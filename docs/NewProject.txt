@@ -1,0 +1,8 @@
+
+
+[File]-[New]-[Project...]-[Web]-[Dynamic Web Project]
+cd workspace/sampleProject
+unzip lacoder-project.zip
+grep -lr \$project * | xargs sed -i '' "s/\$project/aio/g"
+grep -lr \$company * | xargs sed -i '' "s/\$company/jp.co.sbisec/g"
+ 

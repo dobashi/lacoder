@@ -1,0 +1,32 @@
+<!ELEMENT encoding (#PCDATA)>
+
+<!ELEMENT database (connection+)>
+<!ATTLIST database statistics CDATA #IMPLIED>
+<!ELEMENT connection (driver, url+, user,pass,logging?,init-connections?,max-connections?,valid-sql?)>
+<!ATTLIST connection name CDATA #REQUIRED>
+<!ELEMENT driver (#PCDATA)>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT user (#PCDATA)>
+<!ELEMENT pass (#PCDATA)>
+<!ELEMENT logging (#PCDATA)>
+<!ELEMENT init-connections (#PCDATA)>
+<!ELEMENT max-connections (#PCDATA)>
+<!ELEMENT valid-sql (#PCDATA)>
+
+<!ELEMENT presentation (action-extension*,base-path?,exception-handler?,filter*)>
+<!ELEMENT action-extension (#PCDATA)>
+<!ELEMENT base-path (#PCDATA)>
+<!ELEMENT exception-handler (#PCDATA)>
+<!ELEMENT filter (#PCDATA)>
+
+<!ELEMENT pager (rows?,rows-select?)>
+<!ELEMENT rows (#PCDATA)>
+<!ELEMENT rows-select (#PCDATA)>
+
+<!ELEMENT validator (pattern*)>
+<!ELEMENT pattern (#PCDATA)>
+<!ATTLIST pattern name CDATA #REQUIRED>
+
+<!ELEMENT parameter (#PCDATA)>
+<!ATTLIST parameter name CDATA #REQUIRED
+						value CDATA #REQUIRED>

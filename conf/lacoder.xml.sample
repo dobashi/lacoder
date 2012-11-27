@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE luz>
+<root>
+	<encoding>UTF-8</encoding>
+
+	<!-- database -->
+	<database statistics="true">
+		<connection name="default">
+			<param name="driver" value="org.postgresql.Driver"/>
+			<param name="url" value="jdbc:postgresql://re00/relay"/>
+			<param name="user" value="user"/>
+			<param name="pass" value="pass"/>
+			<param name="init_connections" value="1"/>
+			<param name="max_connections" value="50"/>
+			<param name="force_check_connection" value="false"/>
+			<param name="valid_sql" value="select now()"/>
+			<param name="logging" value="true"/>
+		</connection>
+	</database>
+
+	<validator>
+		<ip>^(((\d)|([1-9]\d)|(1\d{1,2})|(2[0-4]\d)|(25[0-5]))\.){3}((\d)|([1-9]\d)|(1\d{1,2})|(2[0-4]\d)|(25[0-5]))$</ip>
+		<mail>[\w-\._? +]+@[\w-\._]+\.[\w\.-_]+</mail>
+	</validator>
+
+	<presentation>
+		<base-path>com.lavans.relay.presentation</base-path>
+		<action-path></action-path>
+		<jsp-path></jsp-path>
+	</presentation>
+
+	<bean id="com.lavans.relay.model.runtime.CommandExecutor"  class="test.com.lavans.relay.model.runtime.CommandExecutorDummy" />
+	<!--
+	<bean id="com.lavans.relay.model.system.IpManager"  class="test.com.lavans.relay.model.system.IpManagerDebug" />
+	 -->
+	<beans group="service" package="com.lavans.relay.service">
+		<!-- if id and class is same, you do not need to write here. -->
+		<!-- <bean id="SampleService" class="SampleService" /> -->
+	</beans>
+
+	<!-- Application server group -->
+	<node_group name="server">
+		<node name="server" uri="http://127.0.0.1:8080/relay/remote" />
+	</node_group>
+
+	<parameter name="postfix.config.path" value="c:/etc/postfix/"/>
+	<parameter name="gctimer.show" value="false"/>
+</root>
