@@ -1,3 +1,6 @@
 depends on:
 commons-logging
-commong-lang
+commong-lang3
+asm
+cglib
+servlet-api
