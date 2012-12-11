@@ -19,7 +19,18 @@ import com.lavans.lacoder.util.ParameterUtils;
 /**
  * HttpClient
  * 
- * Make easy to get or post request .
+ * Make easy to get or post request. This class uses URLConnection, so it's simple.
+ * 
+ * Usege:
+ * String html = new SinpleHttpClient(url).request();	// just get
+ * String html = new SinpleHttpClient(url).setQuery(query).request();	// get with query
+ * 
+ * Or you can write as bellow.
+ * SimpleHttpClient client = new SinpleHttpClient(url);
+ * client.setCharset(charset);
+ * client.setPostData(map);
+ * client.setRequestProperties(requestProperties);
+ * String html = client.request();
  * 
  * TODO Post binary with "multipart/form-data"
  * http://blog.oklab.org/?p=136
