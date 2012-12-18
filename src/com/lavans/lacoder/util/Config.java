@@ -145,7 +145,9 @@ public class Config {
 			logger.error("Can't find xml file.["+ fileName +"]");
 			throw e;
 		} catch (Exception e) {
+			// どこでRuntimeに入れるか検討
 			logger.error("Can't parse xml file.["+ fileName +"]", e);
+			throw new RuntimeException(e);
 		}
 	}
 
