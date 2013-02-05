@@ -1,6 +1,7 @@
 package com.lavans.lacoder.util.cache;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -23,12 +24,22 @@ public class Cache<K,V> implements Serializable{
 
 	/** logger */
 	private static Log logger = LogFactory.getLog(Cache.class.getName());
+	
+    /**
+     * The default initial capacity - MUST be a power of two.
+     */
+    static final int DEFAULT_INITIAL_CAPACITY = 16;
+
+    /**
+     * The load factor used when none specified in constructor.
+     */
+    static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
 	/** Max size of this cache. If maxSize=0 cache size is no limit. */
 	private int maxSize = 100;
 
 	/** cache */
-	private final Map<K,V> cacheMap = Collections.synchronizedMap(new LinkedHashMap<K,V>(){
+	private final Map<K,V> cacheMap = Collections.synchronizedMap(new LinkedHashMap<K,V>(DEFAULT_INITIAL_CAPACITY,DEFAULT_LOAD_FACTOR,true){
 		private static final long serialVersionUID = 1L;
 		/**
 		 * Weather remove oldest entry.
@@ -97,21 +108,15 @@ public class Cache<K,V> implements Serializable{
 	 * @param value
 	 */
 	public void put(K key, V value){
-		synchronized (this) {
-			cacheMap.put(key, value);
-		}
+		cacheMap.put(key, value);
 	}
 
 	public void remove(K key){
-		synchronized (this) {
-			cacheMap.remove(key);
-		}
+		cacheMap.remove(key);
 	}
 
 	public void clear(){
-		synchronized (this) {
-			cacheMap.clear();
-		}
+		cacheMap.clear();
 	}
 
 	/**
@@ -120,8 +125,10 @@ public class Cache<K,V> implements Serializable{
 	 * @return
 	 */
 	public int size(){
-		synchronized (this) {
-			return cacheMap.size();
-		}
+		return cacheMap.size();
+	}
+	
+	public Collection<V> values(){
+		return cacheMap.values();
 	}
 }
